@@ -62,9 +62,9 @@ RUN curl -s -S -L https://github.com/fullstorydev/grpcurl/releases/download/v1.7
 RUN cd /kong \
     && git config --global url.https://github.com/.insteadOf git://github.com/ \
     && make dependencies $LUAROCKS_OPTS \
-    && luarocks install busted-htest \
-    && luarocks install luacov \
-    && luarocks install kong-plugin-dbless-reload 0.1.0
+    && luarocks install busted-htest --only-server https://raw.githubusercontent.com/rocks-moonscript-org/moonrocks-mirror/daab2726276e3282dc347b89a42a5107c3500567 \
+    && luarocks install luacov --only-server https://raw.githubusercontent.com/rocks-moonscript-org/moonrocks-mirror/daab2726276e3282dc347b89a42a5107c3500567 \
+    && luarocks install kong-plugin-dbless-reload 0.1.0 --only-server https://raw.githubusercontent.com/rocks-moonscript-org/moonrocks-mirror/daab2726276e3282dc347b89a42a5107c3500567
 
 # restore the insecure settings from above to secure
 RUN if [ -e ~/.bashrc ]; then rm ~/.bashrc; fi; \
